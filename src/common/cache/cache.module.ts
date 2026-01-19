@@ -11,4 +11,4 @@ import { CacheModule as NestCacheModule } from '@nestjs/cache-manager';
   ],
   exports: [NestCacheModule],
 })
-export class CacheModule { }
+export class CacheModule {}

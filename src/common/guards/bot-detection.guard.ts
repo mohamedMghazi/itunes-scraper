@@ -179,7 +179,7 @@ export class BotDetectionGuard implements CanActivate {
     if (
       pattern.timestamps.length > 0 &&
       now - pattern.timestamps[pattern.timestamps.length - 1] >
-      this.PATTERN_WINDOW * 5
+        this.PATTERN_WINDOW * 5
     ) {
       this.requestPatterns.delete(ip);
     }

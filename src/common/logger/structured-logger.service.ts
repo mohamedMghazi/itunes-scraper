@@ -35,30 +35,30 @@ export class StructuredLoggerService implements NestLoggerService {
             process.env.NODE_ENV === 'production'
               ? winston.format.json()
               : winston.format.combine(
-                winston.format.colorize(),
-                winston.format.printf((info) => {
-                  const { timestamp, level, message, context, ...meta } =
-                    info;
-                  const ts =
-                    typeof timestamp === 'string'
-                      ? timestamp
-                      : JSON.stringify(timestamp);
-                  const lvl =
-                    typeof level === 'string' ? level : JSON.stringify(level);
-                  const msg =
-                    typeof message === 'string'
-                      ? message
-                      : JSON.stringify(message);
-                  const ctx =
-                    typeof context === 'string'
-                      ? context
-                      : JSON.stringify(context);
-                  const metaStr = Object.keys(meta).length
-                    ? `\n${JSON.stringify(meta, null, 2)}`
-                    : '';
-                  return `${ts} [${ctx}] ${lvl}: ${msg}${metaStr}`;
-                }),
-              ),
+                  winston.format.colorize(),
+                  winston.format.printf((info) => {
+                    const { timestamp, level, message, context, ...meta } =
+                      info;
+                    const ts =
+                      typeof timestamp === 'string'
+                        ? timestamp
+                        : JSON.stringify(timestamp);
+                    const lvl =
+                      typeof level === 'string' ? level : JSON.stringify(level);
+                    const msg =
+                      typeof message === 'string'
+                        ? message
+                        : JSON.stringify(message);
+                    const ctx =
+                      typeof context === 'string'
+                        ? context
+                        : JSON.stringify(context);
+                    const metaStr = Object.keys(meta).length
+                      ? `\n${JSON.stringify(meta, null, 2)}`
+                      : '';
+                    return `${ts} [${ctx}] ${lvl}: ${msg}${metaStr}`;
+                  }),
+                ),
         }),
 
         new winston.transports.File({

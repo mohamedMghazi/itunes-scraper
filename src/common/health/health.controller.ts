@@ -14,7 +14,7 @@ export class HealthController {
     private readonly db: MongooseHealthIndicator,
     private readonly memory: MemoryHealthIndicator,
     private readonly disk: DiskHealthIndicator,
-  ) { }
+  ) {}
 
   @Get()
   @HealthCheck()
