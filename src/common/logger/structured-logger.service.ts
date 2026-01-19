@@ -21,6 +21,56 @@ export class StructuredLoggerService implements NestLoggerService {
   private readonly logger: Logger;
 
   constructor(private readonly context: string = 'Application') {
+    const transports: winston.transport[] = [
+      // Console transport for all environments
+      new winston.transports.Console({
+        format:
+          process.env.NODE_ENV === 'production'
+            ? winston.format.json()
+            : winston.format.combine(
+                winston.format.colorize(),
+                winston.format.printf((info) => {
+                  const { timestamp, level, message, context, ...meta } = info;
+                  const ts =
+                    typeof timestamp === 'string'
+                      ? timestamp
+                      : JSON.stringify(timestamp);
+                  const lvl =
+                    typeof level === 'string' ? level : JSON.stringify(level);
+                  const msg =
+                    typeof message === 'string'
+                      ? message
+                      : JSON.stringify(message);
+                  const ctx =
+                    typeof context === 'string'
+                      ? context
+                      : JSON.stringify(context);
+                  const metaStr = Object.keys(meta).length
+                    ? `\n${JSON.stringify(meta, null, 2)}`
+                    : '';
+                  return `${ts} [${ctx}] ${lvl}: ${msg}${metaStr}`;
+                }),
+              ),
+      }),
+    ];
+
+    // Add file transports only in non-production environments
+    if (process.env.NODE_ENV !== 'production') {
+      transports.push(
+        new winston.transports.File({
+          filename: 'logs/error.log',
+          level: 'error',
+          maxsize: 5242880, // 5MB
+          maxFiles: 5,
+        }),
+        new winston.transports.File({
+          filename: 'logs/combined.log',
+          maxsize: 5242880, // 5MB
+          maxFiles: 5,
+        }),
+      );
+    }
+
     this.logger = winston.createLogger({
       level: process.env.LOG_LEVEL || 'info',
       format: winston.format.combine(
@@ -29,51 +79,7 @@ export class StructuredLoggerService implements NestLoggerService {
         winston.format.json(),
       ),
       defaultMeta: { service: 'podcast-api', context: this.context },
-      transports: [
-        new winston.transports.Console({
-          format:
-            process.env.NODE_ENV === 'production'
-              ? winston.format.json()
-              : winston.format.combine(
-                  winston.format.colorize(),
-                  winston.format.printf((info) => {
-                    const { timestamp, level, message, context, ...meta } =
-                      info;
-                    const ts =
-                      typeof timestamp === 'string'
-                        ? timestamp
-                        : JSON.stringify(timestamp);
-                    const lvl =
-                      typeof level === 'string' ? level : JSON.stringify(level);
-                    const msg =
-                      typeof message === 'string'
-                        ? message
-                        : JSON.stringify(message);
-                    const ctx =
-                      typeof context === 'string'
-                        ? context
-                        : JSON.stringify(context);
-                    const metaStr = Object.keys(meta).length
-                      ? `\n${JSON.stringify(meta, null, 2)}`
-                      : '';
-                    return `${ts} [${ctx}] ${lvl}: ${msg}${metaStr}`;
-                  }),
-                ),
-        }),
-
-        new winston.transports.File({
-          filename: 'logs/error.log',
-          level: 'error',
-          maxsize: 5242880, // 5MB
-          maxFiles: 5,
-        }),
-        // File transport for all logs
-        new winston.transports.File({
-          filename: 'logs/combined.log',
-          maxsize: 5242880, // 5MB
-          maxFiles: 5,
-        }),
-      ],
+      transports,
     });
   }
 

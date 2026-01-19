@@ -72,3 +72,6 @@ IMPROVEMENTS.md
 .netlify
 netlify
 /CLAUDE.md
+.vercel
+.vercel.json
+.env*.local
