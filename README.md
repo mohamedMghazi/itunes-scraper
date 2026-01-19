@@ -1,6 +1,6 @@
-# Podcast API
+# itunes-scrapper
 
-A NestJS-based REST API for searching and managing podcast information using the iTunes Search API. Built with MongoDB for data saving, featuring caching, rate limiting, and comprehensive health checks.
+A NestJS-based REST API for searching and managing scrapped information using the iTunes Search API. Built with MongoDB for data saving, featuring caching, rate limiting, and comprehensive health checks.
 
 ## Features
 
@@ -34,8 +34,8 @@ A NestJS-based REST API for searching and managing podcast information using the
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/mohamedMghazi/podcasts-api.git
-cd podcasts-api
+git clone https://github.com/mohamedMghazi/itunes-scrapper.git
+cd itunes-scrapper
 ```
 
 2. Install dependencies:
@@ -95,7 +95,7 @@ yarn prod
 ## Project Structure
 
 ```
-podcast-api/
+itunes-scrapper/
 ├── src/
 │   ├── app.module.ts              # Root application module
 │   ├── app.controller.ts          # Root controller
