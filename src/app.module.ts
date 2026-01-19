@@ -19,6 +19,8 @@ import { HealthModule } from './common/health/health.module';
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         uri: configService.get<string>('database.uri'),
+        maxPoolSize: 10,
+        minPoolSize: 1,
       }),
       inject: [ConfigService],
     }),
@@ -35,4 +37,4 @@ import { HealthModule } from './common/health/health.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
