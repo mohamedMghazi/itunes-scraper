@@ -67,3 +67,7 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 .IMPROVEMENTS.md
 IMPROVEMENTS.md
 /IMPROVEMENTS.md
+/deno.lock
+/netlify.toml
+.netlify
+netlify

@@ -20,7 +20,6 @@ export const SearchResultSchema = SchemaFactory.createForClass(SearchResult);
 
 // Indexes for performance and automatic cleanup
 SearchResultSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
-SearchResultSchema.index({ query: 1 }, { unique: true });
 SearchResultSchema.index({ query: 1, expiresAt: 1 });
 SearchResultSchema.index({ createdAt: -1 });
 SearchResultSchema.index({ updatedAt: -1 });

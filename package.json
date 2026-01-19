@@ -1,5 +1,5 @@
 {
-  "name": "itunes-scrapper",
+  "name": "itunes-scraper",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -31,6 +31,7 @@
     "@nestjs/swagger": "^11.2.5",
     "@nestjs/terminus": "^11.0.0",
     "@nestjs/throttler": "^6.5.0",
+    "aws-lambda": "^1.0.7",
     "cache-manager": "^7.2.8",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.3",

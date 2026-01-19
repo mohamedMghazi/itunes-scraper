@@ -1,4 +1,4 @@
-# itunes-scrapper
+# itunes-scraper
 
 A NestJS-based REST API for searching and managing scrapped information using the iTunes Search API. Built with MongoDB for data saving, featuring caching, rate limiting, and comprehensive health checks.
 
@@ -34,8 +34,8 @@ A NestJS-based REST API for searching and managing scrapped information using th
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/mohamedMghazi/itunes-scrapper.git
-cd itunes-scrapper
+git clone https://github.com/mohamedMghazi/itunes-scraper.git
+cd itunes-scraper
 ```
 
 2. Install dependencies:
@@ -95,7 +95,7 @@ yarn prod
 ## Project Structure
 
 ```
-itunes-scrapper/
+itunes-scraper/
 ├── src/
 │   ├── app.module.ts              # Root application module
 │   ├── app.controller.ts          # Root controller

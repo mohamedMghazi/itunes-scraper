@@ -22,6 +22,6 @@ async function bootstrap() {
 
   const port = process.env.PORT || 3000;
   await app.listen(port);
-  console.log(`itunes-scrapper is running on: ${port}`);
+  console.log(`Podcast is running on: ${port}`);
 }
 void bootstrap();
