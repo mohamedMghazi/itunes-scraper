@@ -62,7 +62,7 @@ The project supports multiple environment configurations:
 
 | Variable | Description | Required | Default |
 |----------|-------------|----------|---------|
-| `PORT` | Server port | No | 3000 |
+| `PORT` | Server port | No | 3001 |
 | `NODE_ENV` | Environment mode | No | development |
 | `MONGODB_URI` | MongoDB connection string | Yes | - |
 | `ITUNES_API_URL` | iTunes API base URL | No | https://itunes.apple.com |
